@@ -8,18 +8,15 @@ const register = async (req, res) => {
 
   try {
     let user = await userModel.find({ username });
-    if (user.length) {
-      return res.status(409).send("username not available");
-    }
 
-    if (user.length && user[0].email == email) {
+    if (user.length) return res.status(409).send("username not available");
+
+    if (user.length && user[0].email == email)
       return res.status(409).send("user already exist");
-    }
 
     bcrypt.hash(password, saltRounds, function (err, hash) {
-      if (err) {
-        return res.status(400).send(err.message);
-      }
+      if (err) return res.status(400).send(err.message);
+
       req.body.password = hash;
 
       let new_user = new userModel(req.body);
@@ -60,7 +57,19 @@ const login = async (req, res) => {
   }
 };
 
+const getLoginUser = async (req, res) => {
+  const { userId } = req.body;
+
+  try {
+    let user = await userModel.findOne({ _id: userId });
+    res.json(user);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
 module.exports = {
   register,
   login,
+  getLoginUser
 };
