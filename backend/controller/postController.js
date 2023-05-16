@@ -12,7 +12,7 @@ const getPost = async (req, res) => {
       .sort({ createdAt: -1 });
 
     res.json({
-      posts: posts,
+      posts: following_posts,
     });
   } catch (error) {
     res.send(error.message);
@@ -60,6 +60,8 @@ const postComments = async (req, res) => {
     res.status(400).send(error.message);
   }
 };
+
+
 
 module.exports = {
   getPost,
