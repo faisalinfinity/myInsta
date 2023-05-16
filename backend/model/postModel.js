@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const replySchema = new mongoose.Schema({
-  user: {
+  replierId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
@@ -18,7 +18,7 @@ const replySchema = new mongoose.Schema({
 });
 
 const commentSchema = new mongoose.Schema({
-  user: {
+  commentorId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
     required: true,
@@ -35,7 +35,7 @@ const commentSchema = new mongoose.Schema({
 });
 
 const postSchema = new mongoose.Schema({
-  user: {
+  userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
     required: true,
@@ -53,7 +53,12 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  likes:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+  }],
   comments: [commentSchema], // Array of comments
+  public:{type:Boolean,required:true}
 });
 
 module.exports = mongoose.model("post", postSchema);
