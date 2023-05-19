@@ -61,8 +61,40 @@ const postComments = async (req, res) => {
   }
 };
 
+const removeComment = async () => {
+  const { postId } = req.params;
+  const { commentId } = req.body;
+
+  try {
+    let post = await postModel.findOne({ _id: postId });
+   let filtered= post?.comments?.filter((el)=>el._id!==commentId)
+   post.comments=filtered;
 
 
+    await post.save();
+    res.send("comment deleted");
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
+
+const removeLike = async () => {
+  const { postId } = req.params;
+  const { likerId } = req.body;
+
+  try {
+    let post = await postModel.findOne({ _id: postId });
+   let filtered= post?.likes?.filter((el)=>el!=likerId)
+   post.likes=filtered;
+
+
+    await post.save();
+    res.send("like removed");
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
 module.exports = {
   getPost,
   postComments,
