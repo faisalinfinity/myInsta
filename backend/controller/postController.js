@@ -1,6 +1,7 @@
 const postModel = require("../model/postModel");
 const { userModel } = require("../model/userModel");
 
+
 const getPost = async (req, res) => {
   const { requesterId } = req.body;
   try {
@@ -62,9 +63,7 @@ const postComments = async (req, res) => {
 };
 
 const removeComment = async () => {
-  const { postId } = req.params;
-  const { commentId } = req.body;
-
+  const { postId ,commentId} = req.params;
   try {
     let post = await postModel.findOne({ _id: postId });
    let filtered= post?.comments?.filter((el)=>el._id!==commentId)
@@ -81,11 +80,11 @@ const removeComment = async () => {
 
 const removeLike = async () => {
   const { postId } = req.params;
-  const { likerId } = req.body;
+  const {userId } = req.body;
 
   try {
     let post = await postModel.findOne({ _id: postId });
-   let filtered= post?.likes?.filter((el)=>el!=likerId)
+   let filtered= post?.likes?.filter((el)=>el!=userId)
    post.likes=filtered;
 
 
@@ -100,4 +99,6 @@ module.exports = {
   postComments,
   postLikes,
   newPost,
+  removeComment,
+  removeLike
 };
