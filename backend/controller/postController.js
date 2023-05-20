@@ -20,6 +20,17 @@ const getPost = async (req, res) => {
   }
 };
 
+const getSinglePost=async(req,res)=>{
+  const {id}=req.params
+  try {
+
+    res.json(await postModel.findOne({_id:id}))
+    
+  } catch (error) {
+    res.send(error.message);
+  }
+}
+
 const newPost = async (req, res) => {
   try {
     let new_post = new postModel(req.body);
@@ -100,5 +111,5 @@ module.exports = {
   postLikes,
   newPost,
   removeComment,
-  removeLike
+  removeLike, getSinglePost
 };
