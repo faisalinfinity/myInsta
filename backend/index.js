@@ -4,12 +4,13 @@ const cors = require("cors");
 const { connection } = require("./connection/connection");
 const { userRoute } = require("./routes/userRoute");
 const { postRoute } = require("./routes/postRoute");
+const { authorization } = require("./middlewares/authorization");
 const app = express();
 app.use(express.json());
 app.use(cors());
-
-app.use("/",userRoute)
-app.use("/",postRoute)
+app.use(authorization)
+// app.use("/",userRoute)
+// app.use("/",postRoute)
 
 
 const port = process.env.PORT;
