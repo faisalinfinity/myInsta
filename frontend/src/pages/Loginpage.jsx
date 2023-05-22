@@ -21,7 +21,7 @@ const Loginpage = () => {
     let arr = [iphone1, iphone2];
     const id = setInterval(() => {
       imageRef.current.src = arr[i];
-        i++
+      i++;
       if (i == 2) {
         i = 0;
       }
@@ -31,10 +31,10 @@ const Loginpage = () => {
   }, []);
   return (
     <div className="border h-screen w-full  flex flex-row  bg-white items-center justify-center gap-5">
-      <div >
-        <img className="max-w-2xl min-w-2xl" ref={imageRef}  alt="" />
+      <div className="hidden lg:block">
+        <img className="max-w-2xl min-w-2xl" ref={imageRef} alt="" />
       </div>
-      <div className=" border w-1/4 flex flex-col justify-center bg-white items-center gap-5">
+      <div className="sm:w-1/3 md:w-1/2 lg:w-1/4  flex flex-col justify-center bg-white items-center gap-5 p-4">
         <div className="border border-gray-300 h-full w-full flex flex-col justify-center gap-3 items-center p-4">
           <img
             className="w-3/5"
@@ -71,14 +71,14 @@ const Loginpage = () => {
               src="https://revolvingcompass.com/wp/wp-content/uploads/2017/06/facebook-icon-preview-1-400x400.png"
               alt=""
             />
-            <p className="text-[#465993] font-semibold">Log in with Facebook</p>
+            <p className="text-[#465993] font-semibold  cursor-pointer">Log in with Facebook</p>
           </div>
-          <p>Forgot password?</p>
+          <p className=" cursor-pointer">Forgot password?</p>
         </div>
         <div className="border border-gray-300 p-4 w-full flex flex-col justify-center gap-3 items-center ">
           <p>
             Dont have an account?{" "}
-            <span className="text-insta-blue font-semibold">Sign up</span>
+            <span className="text-insta-blue font-semibold cursor-pointer">Sign up</span>
           </p>
         </div>
       </div>

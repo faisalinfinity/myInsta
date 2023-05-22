@@ -2,6 +2,8 @@ import {Routes,Route} from 'react-router-dom'
 import Newsfeed from '../pages/Newsfeed'
 import Inbox from '../pages/Inbox'
 import MessageBox from '../pages/MessageBox'
+import Loginpage from '../pages/Loginpage'
+import Signuppage from '../pages/Signuppage'
 
 export default function MainRoute(){
   return (
@@ -9,8 +11,8 @@ export default function MainRoute(){
                 <Route path='/' element={<Newsfeed/>} ></Route>
                 <Route path='/inbox' element={<Inbox/>} ></Route>
                 <Route path='/message' element={<MessageBox/>} ></Route>
+                <Route path='/login' element={<Loginpage/>} ></Route>
+                <Route path='/register' element={<Signuppage/>} ></Route>
             </Routes>)
-
-    
   
 }
