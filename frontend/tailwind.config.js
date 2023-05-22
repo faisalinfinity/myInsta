@@ -5,7 +5,13 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'insta-blue': '#0095f6',
+      }
+    },
   },
-  plugins: [],
+  plugins: [
+    
+  ],
 }
