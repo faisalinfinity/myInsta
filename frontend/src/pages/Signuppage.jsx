@@ -1,13 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import iphone1 from "../assets/iphone.png";
-import iphone2 from "../assets/iphone-2.png";
-import { FaFacebook, FaFacebookSquare } from "react-icons/fa";
 
 const Signuppage = () => {
   const [disable, setDisable] = useState(true);
   const [password, setpassword] = useState("");
   const [username, setusername] = useState("");
-  const imageRef = useRef();
+
 
   useEffect(() => {
     if (password.length && username.length) {
@@ -17,19 +14,7 @@ const Signuppage = () => {
     }
   }, [password, username]);
 
-  useEffect(() => {
-    let i = 1;
-    let arr = [iphone1, iphone2];
-    const id = setInterval(() => {
-      imageRef.current.src = arr[i];
-      i++;
-      if (i == 2) {
-        i = 0;
-      }
-    }, 2500);
-
-    return () => clearInterval(id);
-  }, []);
+  
   return (
     <div className="border h-screen w-full  flex flex-row  bg-white items-center justify-center">
       <div className="flex flex-col justify-center bg-white items-center gap-5  sm:w-1/2 lg:w-1/4 ">
