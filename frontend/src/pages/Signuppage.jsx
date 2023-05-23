@@ -6,7 +6,6 @@ const Signuppage = () => {
   const [password, setpassword] = useState("");
   const [username, setusername] = useState("");
 
-
   useEffect(() => {
     if (password.length && username.length) {
       setDisable(false);
@@ -15,7 +14,6 @@ const Signuppage = () => {
     }
   }, [password, username]);
 
-  
   return (
     <div className="border h-screen w-full  flex flex-row  bg-white items-center justify-center">
       <div className="flex flex-col justify-center bg-white items-center gap-5  sm:w-1/2 lg:w-1/4 ">

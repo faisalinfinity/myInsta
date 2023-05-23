@@ -4,6 +4,7 @@ import Inbox from '../pages/Inbox'
 import MessageBox from '../pages/MessageBox'
 import Loginpage from '../pages/Loginpage'
 import Signuppage from '../pages/Signuppage'
+import Forgotpage from '../pages/Forgotpage'
 
 export default function MainRoute(){
   return (
@@ -13,6 +14,7 @@ export default function MainRoute(){
                 <Route path='/message' element={<MessageBox/>} ></Route>
                 <Route path='/login' element={<Loginpage/>} ></Route>
                 <Route path='/register' element={<Signuppage/>} ></Route>
+                <Route path='/login/forgot' element={<Forgotpage/>} ></Route>
             </Routes>)
   
 }
