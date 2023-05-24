@@ -2,7 +2,7 @@ import React from 'react'
 
 const RightSidebar = () => {
   return (
-    <div className='w-full px-5' >
+    <div className='w-full px-5 sm:mt-14' >
 
         {/* Your Profile */}
       <div className='flex' >

@@ -1,11 +1,17 @@
 import PostCard from "../components/PostCard"
+import TopNavbar from "../components/TopNavbar"
 const Newsfeed = () => {
   return (
-    <div>
-      {
-        data.map((el)=>(<PostCard name={el.name} image={el.image} place={el.place} likeCount={el.likeCount} caption={el.caption} />))
-      }
-    </div>
+      <div>
+        <div className="sm:hidden">
+          <TopNavbar/>
+        </div>
+        <div className="sm:mt-14" >
+          {
+            data.map((el)=>(<PostCard name={el.name} image={el.image} place={el.place} likeCount={el.likeCount} caption={el.caption} />))
+          }
+        </div>
+      </div>
   )
 }
 

@@ -2,15 +2,15 @@ import React from 'react'
 
 const Inbox = () => {
   return (
-    <div className='w-full mx-auto mt-10 px-5' >
-            <div className='text-white text-xl font-bold pl-3' >
+    <div className='w-full mx-auto pt-3 sm:mt-10 px-5 min-h-screen' >
+            <div className='text-white text-xl font-bold sm:pl-3' >
                 sarimkhan_208
-            </div><div className='text-white text-sm font-bold pl-3 mt-2' >
+            </div><div className='text-white text-sm font-bold sm:pl-3 mt-2' >
                 Messages
             </div>
             {
                 data.map((el)=>(
-                    <div key={el.id} className='flex justify-between my-3 cursor-pointer hover:bg-gray-900 w-full rounded-md p-2 ' >
+                    <div key={el.id} className='flex justify-between my-3 cursor-pointer hover:bg-gray-900 w-full rounded-md py-1  sm:pt-2' >
                         <div className='flex'>
                             <div className='mr-4 mt-2' >
                                 <img className='w-9 h-9 rounded-full' src={el.img}  alt='profile-pic' />
