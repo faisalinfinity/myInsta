@@ -9,7 +9,8 @@ import { Link as RouterLink } from 'react-router-dom'
 const LeftSidebar = () => {
 
   return (
-    <div className='ml-8 bg-black w-full' >
+    <div className='ml-8 bg-black w-full min-h-screen' >
+        
       <div className="w-full" ><img className="mt-4" style={{width:'150px'}} src={img} alt="logo" /></div>
         <div className='mt-10 mr-3 ' >
             <RouterLink to='/' >
@@ -26,12 +27,12 @@ const LeftSidebar = () => {
             </button>
             </RouterLink>
 
-            <RouterLink to='/explore' >
+            {/* <RouterLink to='/explore' >
             <button className='flex hover:bg-gray-900 w-full rounded-md p-2 mb-4'>
                 <AiOutlineCompass className='text-2xl text-white' />
                 <div className='text-lg ml-3 font-semibold text-white'>Explore</div>
             </button>
-            </RouterLink>
+            </RouterLink> */}
 
             <RouterLink to='/reels' >
             <button className='flex hover:bg-gray-900 w-full rounded-md p-2 mb-4'>

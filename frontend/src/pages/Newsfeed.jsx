@@ -1,3 +1,4 @@
+import BottomNavbar from "../components/BottomNavbar"
 import PostCard from "../components/PostCard"
 import TopNavbar from "../components/TopNavbar"
 const Newsfeed = () => {
@@ -10,6 +11,9 @@ const Newsfeed = () => {
           {
             data.map((el)=>(<PostCard name={el.name} image={el.image} place={el.place} likeCount={el.likeCount} caption={el.caption} />))
           }
+        </div>
+        <div className="sm:hidden">
+          <BottomNavbar/>
         </div>
       </div>
   )

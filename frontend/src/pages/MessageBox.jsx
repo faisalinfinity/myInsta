@@ -5,7 +5,7 @@ import {TbSend} from 'react-icons/tb'
 
 const MessageBox = () => {
   return (
-    <div className='w-full p-5'>
+    <div className='w-full p-5 min-h-screen'>
         {/* Message Box Navbar */}
         <div className='flex justify-between p-2 border-b border-gray-900' >
             <div className='flex' >
@@ -30,8 +30,8 @@ const MessageBox = () => {
 
         {/* Footer InputBox */}
 
-        <div className='flex fixed bottom-2' >
-            <div style={{width:'630px'}} ><input type='text' className='border border-gray-900 bg-gray-700 rounded-md w-full' /></div>
+        <div className='flex bottom-2 w-6/12' >
+            <input type='text' className=' bg-gray-700 rounded-md w-11/12 ' />
             <div><TbSend className='text-white ml-2 text-xl cursor-pointer' /></div>
         </div>
       
