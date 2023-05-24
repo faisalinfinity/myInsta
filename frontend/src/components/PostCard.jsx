@@ -6,9 +6,8 @@ import {BsFillSaveFill} from 'react-icons/bs'
 
 
 const PostCard = ({ name, image,place,likeCount,caption }) => {
-    console.log(name,caption)
   return (
-        <div className='bg-black w-full sm:w-3/5 mx-1 sm:mx-auto border-b border-gray-900 mt-20 mb-20'  >
+        <div className='bg-black w-full sm:w-3/5 mx-1 sm:mx-auto border-b border-gray-900 sm:mb-10'  >
               {/* Header  */}
             <div className='flex mb-1 mx-2 ' >
               <div>
@@ -16,7 +15,7 @@ const PostCard = ({ name, image,place,likeCount,caption }) => {
               </div>
 
               <div className=' mx-3 ' >
-                <div className='text-white font-bold' >{name}<span className='text-white font-thin ml-2 '>1hr</span> </div>
+                <div className='text-white font-bold' >{name}<span className='text-white font-thin ml-2 '></span> </div>
                 <div className='text-blue-400 text-xs ' >{place}</div>
               </div>
             </div>
@@ -51,6 +50,9 @@ const PostCard = ({ name, image,place,likeCount,caption }) => {
               </div>
               <div className='text-base text-gray-600 mt-2 cursor-pointer'>
                 View all 5 comments
+              </div>
+              <div className='text-xs text-gray-600'>
+                1 day ago
               </div>
 
             </div>
