@@ -1,5 +1,6 @@
 import {RiMessengerLine} from 'react-icons/ri'
 import {AiOutlineHeart} from 'react-icons/ai'
+import { Link as RouterLink } from 'react-router-dom'
 
 const TopNavbar = () => {
   return (
@@ -8,13 +9,17 @@ const TopNavbar = () => {
         <img src={img} style={{width:'180px',height:'50px'}} alt='logo' />
       </div>
       <div className='flex py-1' >
+        <RouterLink to='/notification' >
         <button className='flex hover:bg-gray-900 w-full rounded-md p-2'>
             <AiOutlineHeart className='text-2xl text-white mt-1' />
         </button>
+        </RouterLink>
 
+        <RouterLink to='/inbox' >
         <button className='flex hover:bg-gray-900 w-full rounded-md p-2'>
             <RiMessengerLine className='text-2xl text-white mt-1' />
         </button>
+        </RouterLink>
       </div>
     </div>
   )

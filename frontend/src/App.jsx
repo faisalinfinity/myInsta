@@ -27,9 +27,9 @@ function App() {
           <div className="hidden sm:flex w-0 sm:w-1/4 bg-black">
             <RightSidebar />
           </div>
-          <div className="block bg-black sm:hidden">
+          {/* <div className="block bg-black sm:hidden">
             <BottomNavbar />
-          </div>
+          </div> */}
         </div>
       )}
 
@@ -37,7 +37,6 @@ function App() {
         <MainRoute />
       )}
     </>
-    // <MainRoute/>
   );
 }
 
