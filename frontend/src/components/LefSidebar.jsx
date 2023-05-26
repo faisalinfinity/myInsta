@@ -4,6 +4,7 @@ import {RxVideo,RxAvatar} from 'react-icons/rx'
 import {RiAddCircleLine,RiMessengerLine} from 'react-icons/ri'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import { Link as RouterLink } from 'react-router-dom'
+import MyModal from './CreatePost'
 
 
 const LeftSidebar = () => {
@@ -55,11 +56,9 @@ const LeftSidebar = () => {
             </button>
             </RouterLink>
 
-            <RouterLink to='/create' >
-            <button className='flex hover:bg-gray-900 w-full rounded-md p-2 mb-4'>
-                <RiAddCircleLine className='text-2xl text-white' />
-                <div className='text-lg ml-3 font-semibold text-white'>Create</div>
-            </button>
+            <RouterLink  >
+            <MyModal/>
+           
             </RouterLink>
 
             <RouterLink to='/profile' >
