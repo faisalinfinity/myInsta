@@ -4,7 +4,7 @@ import { RiAddCircleLine } from "react-icons/ri";
 
 export default function MyModal() {
   let [isOpen, setIsOpen] = useState(false);
-
+  const [selectedFile, setSelectedFile] = useState(null);
   function closeModal() {
     setIsOpen(false);
   }
@@ -32,9 +32,20 @@ export default function MyModal() {
     e.preventDefault();
     setDragging(false);
     const files = e.dataTransfer.files;
-    // Handle dropped files here
+    setSelectedFile(URL.createObjectURL(files));
   };
 
+  const handleSelect = (e) => {
+    e.preventDefault();
+
+    const file = e.target.files[0];
+
+    setSelectedFile(URL.createObjectURL(file));
+  };
+  const isImageFile = (fileType) => {
+    if (!fileType) return false;
+  return fileType.includes('image');
+  };
   return (
     <>
       <button
@@ -56,10 +67,10 @@ export default function MyModal() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
+            <div className="fixed inset-0 bg-black bg-opacity-25 " />
           </Transition.Child>
 
-          <div className="fixed inset-0 overflow-y-auto ">
+          <div className="fixed inset-0 overflow-y-auto">
             <div className="flex min-h-full items-center justify-center p-4 text-center ">
               <Transition.Child
                 as={Fragment}
@@ -70,10 +81,10 @@ export default function MyModal() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-gray-800 p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-xl  transform overflow-hidden rounded-2xl bg-gray-800 p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-white"
+                    className="text-lg font-medium leading-6 text-white text-center"
                   >
                     Create new post
                   </Dialog.Title>
@@ -95,21 +106,49 @@ export default function MyModal() {
                   </div> */}
 
                   <div
-                    className={`border-2 rounded-lg p-8 ${
+                    className={`h-96 border-2 rounded-lg p-8 ${
                       dragging ? "border-blue-500" : "border-white"
                     }`}
                     onDragEnter={handleDragEnter}
                     onDragLeave={handleDragLeave}
                     onDragOver={handleDragOver}
                     onDrop={handleDrop}
+                    onSelect={handleSelect}
                   >
-                    {dragging ? (
-                      <div className="text-white">
-                        <span className="text-blue-500 text-white"> Drop the files here...</span>
+                    {selectedFile && isImageFile(selectedFile.type) ? (
+                      <img
+                        src={selectedFile}
+                        alt="Selected File"
+                        className="mb-4 max-h-64"
+                      />
+                    ) : selectedFile ? (
+                      <video
+                        src={selectedFile}
+                        alt="Selected File"
+                        controls
+                        className="mb-4 max-h-64"
+                      />
+                    ) : dragging ? (
+                      <div className="text-blue-500 text-white">
+                        Drop the files here...
                       </div>
                     ) : (
                       <div>Drag and drop your files here...</div>
                     )}
+                    <div className="mt-4">
+                      <input
+                        type="file"
+                        id="fileInput"
+                        className="hidden"
+                        onChange={handleSelect}
+                      />
+                      <label
+                        htmlFor="fileInput"
+                        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded cursor-pointer"
+                      >
+                        Select Files
+                      </label>
+                    </div>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
