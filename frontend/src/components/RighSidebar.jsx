@@ -1,19 +1,12 @@
 import React from 'react'
+import User from './reusable/User'
 
 const RightSidebar = () => {
   return (
     <div className='w-full px-5 sm:mt-14' >
 
         {/* Your Profile */}
-      <div className='flex' >
-        <div className='mr-4' >
-            <img className='w-10 h-10' src={img}  alt='profile-pic' />
-        </div>
-        <div>
-            <div className='text-white font-bold' >Sarim Khan</div>
-            <div className='text-gray-400 text-xs ' >sarimkhan_208</div>
-        </div>
-      </div>
+    <User img={img}/>
 
         <div className='text-gray-400 text-xs font-bold my-10' >
             Suggested for you
