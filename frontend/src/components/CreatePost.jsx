@@ -4,6 +4,7 @@ import { RiAddCircleLine } from "react-icons/ri";
 
 export default function MyModal() {
   let [isOpen, setIsOpen] = useState(false);
+  const [imageType, setImageType] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   function closeModal() {
     setIsOpen(false);
@@ -32,19 +33,24 @@ export default function MyModal() {
     e.preventDefault();
     setDragging(false);
     const files = e.dataTransfer.files;
-    setSelectedFile(URL.createObjectURL(files));
+    files[0].type.split("/").includes("image")
+      ? setImageType(true)
+      : setImageType(false);
+    if (files.length > 0) {
+      const file = files[0];
+      setSelectedFile(URL.createObjectURL(file));
+    }
   };
 
   const handleSelect = (e) => {
     e.preventDefault();
 
     const file = e.target.files[0];
+    file.type.split("/").includes("image")
+      ? setImageType(true)
+      : setImageType(false);
 
     setSelectedFile(URL.createObjectURL(file));
-  };
-  const isImageFile = (fileType) => {
-    if (!fileType) return false;
-  return fileType.includes('image');
   };
   return (
     <>
@@ -115,7 +121,7 @@ export default function MyModal() {
                     onDrop={handleDrop}
                     onSelect={handleSelect}
                   >
-                    {selectedFile && isImageFile(selectedFile.type) ? (
+                    {selectedFile && imageType ? (
                       <img
                         src={selectedFile}
                         alt="Selected File"
