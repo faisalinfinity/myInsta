@@ -112,9 +112,9 @@ export default function MyModal() {
                   </div> */}
 
                   <div
-                    className={`h-96 border-2 rounded-lg p-8 ${
+                    className={`border-2 rounded-lg p-8 ${
                       dragging ? "border-blue-500" : "border-white"
-                    }`}
+                    } flex justify-center items-center`}
                     onDragEnter={handleDragEnter}
                     onDragLeave={handleDragLeave}
                     onDragOver={handleDragOver}
@@ -132,7 +132,7 @@ export default function MyModal() {
                         src={selectedFile}
                         alt="Selected File"
                         controls
-                        className="mb-4 max-h-64"
+                        className="mb-4 w-96 h-96"
                       />
                     ) : dragging ? (
                       <div className="text-blue-500 text-white">
