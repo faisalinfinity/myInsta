@@ -6,6 +6,7 @@ export default function MyModal() {
   let [isOpen, setIsOpen] = useState(false);
   const [imageType, setImageType] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
+  
   function closeModal() {
     setIsOpen(false);
   }
@@ -90,9 +91,10 @@ export default function MyModal() {
                 <Dialog.Panel className="w-full max-w-xl  transform overflow-hidden rounded-2xl bg-gray-800 p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-white text-center"
+                    className={`text-lg  leading-6 text-white text-center ${selectedFile && "flex justify-between"}`}
                   >
-                    Create new post
+                    <h2 className="text-center"> Create new post</h2>
+                   {selectedFile &&  <h6 className="text-insta-blue">Next</h6>}
                   </Dialog.Title>
                   {/* <div className="mt-2 ">
                     <p className="text-sm text-gray-500">
@@ -114,33 +116,35 @@ export default function MyModal() {
                   <div
                     className={`border-2 rounded-lg p-8 ${
                       dragging ? "border-blue-500" : "border-white"
-                    } flex justify-center items-center`}
+                    } flex flex-col justify-center items-center`}
                     onDragEnter={handleDragEnter}
                     onDragLeave={handleDragLeave}
                     onDragOver={handleDragOver}
                     onDrop={handleDrop}
                     onSelect={handleSelect}
                   >
-                    {selectedFile && imageType ? (
-                      <img
-                        src={selectedFile}
-                        alt="Selected File"
-                        className="mb-4 max-h-64"
-                      />
-                    ) : selectedFile ? (
-                      <video
-                        src={selectedFile}
-                        alt="Selected File"
-                        controls
-                        className="mb-4 w-96 h-96"
-                      />
-                    ) : dragging ? (
-                      <div className="text-blue-500 text-white">
-                        Drop the files here...
-                      </div>
-                    ) : (
-                      <div>Drag and drop your files here...</div>
-                    )}
+                    <div className="flex justify-center items-center ">
+                      {selectedFile && imageType ? (
+                        <img
+                          src={selectedFile}
+                          alt="Selected File"
+                          className="mb-4 max-h-64"
+                        />
+                      ) : selectedFile ? (
+                        <video
+                          src={selectedFile}
+                          alt="Selected File"
+                          controls
+                          className="mb-4 w-96 h-96"
+                        />
+                      ) : dragging ? (
+                        <div className="text-blue-500 text-white">
+                          Drop the files here...
+                        </div>
+                      ) : (
+                        <div>Drag and drop your files here...</div>
+                      )}
+                    </div>
                     <div className="mt-4">
                       <input
                         type="file"
