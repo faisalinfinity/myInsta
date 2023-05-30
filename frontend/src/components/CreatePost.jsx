@@ -77,7 +77,7 @@ export default function MyModal() {
       </button>
 
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+        <Dialog as="div" className="relative z-10 h-96" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -101,7 +101,7 @@ export default function MyModal() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-xl  transform overflow-hidden rounded-2xl bg-gray-800 p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="relative w-full max-w-2xl max-h-1/2  transform overflow-hidden rounded-2xl bg-gray-800 p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
                     className={`text-lg  leading-6 text-white text-center ${
@@ -183,26 +183,31 @@ export default function MyModal() {
                           rows="10"
                         ></textarea>
                         <div
-                          style={{ }}
-                          className="flex justify-between items-center"
+                          style={{}}
+                          className="flex justify-between items-center w-full"
                         >
                           <button onClick={handleToggleEmojiPicker}>😀</button>
                           <p>{2200 - postText.length}/2200</p>
-                          {showEmojiPicker && (
-                            <Picker
-                              data={data}
-                              onEmojiSelect={handleSelectEmoji}
-                              emojiTooltip={true}
-                              perLine={7}
-                              title="Pick your emoji"
-                              style={{
-                                position: "absolute",
-                                zIndex: "20",
-                                bottom: "100%",
-                                left: "0",
-                              }}
-                            />
-                          )}
+                          <div className="relative border max-h-46">
+                            {showEmojiPicker && (
+                              <Picker
+                                data={data}
+                                onEmojiSelect={handleSelectEmoji}
+                                
+                                emojiTooltip={true}
+                                perLine={7}
+                                title="Pick your emoji"
+                                style={{
+                                  position: "absolute",
+                                  zIndex: "30",
+                                  bottom: "100%",
+                                  left: "0",
+                                  outerHeight: "100px",
+                                  innerHeight:"100px"
+                                }}
+                              />
+                            )}
+                          </div>
                         </div>
                       </div>
                     )}
