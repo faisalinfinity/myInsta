@@ -1,24 +1,24 @@
 import React from 'react'
-import { Link as RouterLink } from 'react-router-dom'
+import PostCard from '../components/PostCard'
+import BottomNavbar from '../components/BottomNavbar'
 
-const UserPosts = () => {
-    return (
-        <div className='bg-black min-h-screen w-full p-2' >
-            <div className='grid grid-cols-3 gap-1' >
-                {
-                    data.map((el)=>(
-                        <RouterLink to='/profile/usersinglepost' >
-                            <div>
-                                <img className='w-full h-full' src={el.image} alt='img' />
-                            </div>
-                        </RouterLink>
-                    ))
-                }
-            </div>
-        </div>)
+const UserSinglePost = () => {
+  return (
+    <div>
+        <div className="sm:mt-14" >
+          {
+            data.map((el)=>(<PostCard name={el.name} image={el.image} place={el.place} likeCount={el.likeCount} caption={el.caption} />))
+          }
+        </div>
+        <div className="sm:hidden">
+          <BottomNavbar/>
+        </div>
+    </div>
+  )
 }
 
-export default UserPosts
+export default UserSinglePost
+
 
 
 
@@ -92,5 +92,5 @@ let data = [
         image : 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQb-oLUXwKGXI6C4U6gkycJsXlpiZqvMdPB0Yp8LFXvRuuoFHcF',
         likeCount :54514 ,
         caption : 'Machayenge'
-      },
+      }
   ]

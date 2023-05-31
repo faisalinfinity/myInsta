@@ -45,7 +45,7 @@ const Profile = () => {
             <RouterLink to='/profile/' >
                 <div>
                     <div className='flex justify-center mb-1 text-lg' ><RiDashboardFill/></div>
-                    <div>Dashboard</div>
+                    <div>Posts</div>
                 </div>
             </RouterLink>
 
@@ -65,7 +65,7 @@ const Profile = () => {
         <div>
             <UserProfileRoutes/>
         </div>
-        
+
         <div className="sm:hidden">
             <BottomNavbar/>
         </div>
