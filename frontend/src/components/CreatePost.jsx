@@ -4,7 +4,7 @@ import { RiAddCircleLine } from "react-icons/ri";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import User from "./reusable/User";
-
+import ReactPlayer from "react-player";
 export default function MyModal() {
   let [isOpen, setIsOpen] = useState(false);
   const [imageType, setImageType] = useState(false);
@@ -108,6 +108,14 @@ export default function MyModal() {
                       selectedFile && "flex justify-between"
                     }`}
                   >
+                    {next && (
+                      <h6
+                        className="text-insta-blue"
+                        onClick={() => setnext(false)}
+                      >
+                        Back
+                      </h6>
+                    )}
                     <h2 className="text-center"> Create new post</h2>
                     {selectedFile && (
                       <h6
@@ -136,46 +144,49 @@ export default function MyModal() {
                   </div> */}
 
                   <div
-                    className={`border-2 rounded-lg p-8 ${
+                    className={`border-2 rounded-lg p-3 ${
                       dragging ? "border-blue-500" : "border-white"
                     } flex ${
                       !next ? "flex-col" : "flex-row"
-                    } justify-evenly gap-10 items-center`}
+                    } justify-evenly gap-5 items-center`}
                     onDragEnter={handleDragEnter}
                     onDragLeave={handleDragLeave}
                     onDragOver={handleDragOver}
                     onDrop={handleDrop}
                     onSelect={handleSelect}
                   >
-                    <div className="flex justify-center items-center  ">
-                      {selectedFile && imageType ? (
-                        <img
-                          src={selectedFile}
-                          alt="Selected File"
-                          className="mb-4 max-h-64"
-                        />
-                      ) : selectedFile ? (
-                        <video
-                          src={selectedFile}
-                          alt="Selected File"
-                          controls
-                          className="mb-4 w-96 h-96"
-                        />
-                      ) : dragging ? (
-                        <div className="text-blue-500 text-white">
-                          Drop the files here...
-                        </div>
-                      ) : (
-                        <div>Drag and drop your files here...</div>
-                      )}
-                      
-                    </div>
-                    <div className="relative border max-h-46">
-                        {showEmojiPicker && (
+                    {!showEmojiPicker && (
+                      <div className="flex justify-center items-center  ">
+                        {selectedFile && imageType ? (
+                          <img
+                            src={selectedFile}
+                            alt="Selected File"
+                            className="mb-4 max-h-64"
+                          />
+                        ) : selectedFile ? (
+                          <ReactPlayer
+                            url={selectedFile}
+                            playing={true}
+                            controls={false}
+                            loop={true}
+                            width={"90%"}
+                            // height={"30%"}
+                          />
+                        ) : dragging ? (
+                          <div className="text-blue-500 text-white">
+                            Drop the files here...
+                          </div>
+                        ) : (
+                          <div>Drag and drop your files here...</div>
+                        )}
+                      </div>
+                    )}
+                    {showEmojiPicker && (
+                      <div className="relative border max-h-46">
+                        {
                           <Picker
                             data={data}
                             onEmojiSelect={handleSelectEmoji}
-                            
                             emojiTooltip={true}
                             perLine={7}
                             title="Pick your emoji"
@@ -185,16 +196,17 @@ export default function MyModal() {
                               bottom: "100%",
                               left: "0",
                               outerHeight: "100px",
-                              innerHeight:"100px"
+                              innerHeight: "100px",
                             }}
                           />
-                        )}
+                        }
                       </div>
+                    )}
                     {next && (
-                      <div className="border flex flex-col justify-evenly items-center p-4 ">
+                      <div className="border flex flex-col justify-evenly items-center p-4 gap-5">
                         <User />
                         <textarea
-                          className="bg-black text-white"
+                          className="bg-gray-800 text-white"
                           placeholder="Write a caption"
                           value={postText}
                           onChange={(e) => setPostText(e.target.value)}
@@ -209,6 +221,7 @@ export default function MyModal() {
                         >
                           <button onClick={handleToggleEmojiPicker}>😀</button>
                           <p>{2200 - postText.length}/2200</p>
+
                           {/* <div className="relative border max-h-46">
                             {showEmojiPicker && (
                               <Picker
@@ -230,6 +243,12 @@ export default function MyModal() {
                             )}
                           </div> */}
                         </div>
+                        <input
+                          className="bg-gray-800 text-white w-full"
+                          placeholder="Add location"
+                          
+                          type="text"
+                        />
                       </div>
                     )}
                     {!next && (
