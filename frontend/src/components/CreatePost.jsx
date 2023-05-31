@@ -5,13 +5,19 @@ import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import User from "./reusable/User";
 import ReactPlayer from "react-player";
+import { useLocation } from "react-router-dom";
 export default function MyModal({ mobile }) {
   let [isOpen, setIsOpen] = useState(false);
   const [imageType, setImageType] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [next, setnext] = useState(false);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  let endPoint = useLocation().pathname;
+  let endpointArr = endPoint.split("/");
+  
   const [postText, setPostText] = useState("");
+
+
   function closeModal() {
     setIsOpen(false);
   }
