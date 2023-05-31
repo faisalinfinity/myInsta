@@ -57,7 +57,7 @@ const LeftSidebar = () => {
             </RouterLink>
 
             <RouterLink  >
-            <MyModal/>
+            <MyModal mobile={false}/>
            
             </RouterLink>
 

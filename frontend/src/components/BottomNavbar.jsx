@@ -3,6 +3,7 @@ import {BiSearchAlt2} from 'react-icons/bi'
 import {RxVideo,RxAvatar} from 'react-icons/rx'
 import {RiAddCircleLine} from 'react-icons/ri'
 import { Link as RouterLink } from 'react-router-dom'
+import MyModal from './CreatePost'
 
 const BottomNavbar = () => {
   return (
@@ -23,11 +24,12 @@ const BottomNavbar = () => {
         </div>
         </RouterLink>
 
-        <RouterLink to='/create'>
+        <RouterLink >
         <div className='py-1'>
-            <button className='flex hover:bg-gray-900 w-full rounded-md p-2'>
+        <MyModal mobile={true} />
+            {/* <button className='flex hover:bg-gray-900 w-full rounded-md p-2'>
                 <RiAddCircleLine className='text-2xl text-white' />
-            </button>
+            </button> */}
         </div>
         </RouterLink>
 

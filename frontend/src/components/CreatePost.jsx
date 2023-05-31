@@ -5,7 +5,7 @@ import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import User from "./reusable/User";
 import ReactPlayer from "react-player";
-export default function MyModal() {
+export default function MyModal({ mobile }) {
   let [isOpen, setIsOpen] = useState(false);
   const [imageType, setImageType] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -76,7 +76,9 @@ export default function MyModal() {
         className="flex hover:bg-gray-900 w-full rounded-md p-2 mb-4"
       >
         <RiAddCircleLine className="text-2xl text-white" />
-        <div className="text-lg ml-3 font-semibold text-white">Create</div>
+        {!mobile && (
+          <div className="text-lg ml-3 font-semibold text-white">Create</div>
+        )}
       </button>
 
       <Transition appear show={isOpen} as={Fragment}>
@@ -125,7 +127,7 @@ export default function MyModal() {
                         className="text-insta-blue cursor-pointer"
                         onClick={() => setnext(true)}
                       >
-                       {next?"Share":"Next"}
+                        {next ? "Share" : "Next"}
                       </h6>
                     )}
                   </Dialog.Title>
@@ -158,7 +160,7 @@ export default function MyModal() {
                     onDrop={handleDrop}
                     onSelect={handleSelect}
                   >
-                    {!showEmojiPicker && (
+                    {!showEmojiPicker && mobile && !next && (
                       <div className="flex justify-center items-center w-1/2">
                         {selectedFile && imageType ? (
                           <img
@@ -184,8 +186,34 @@ export default function MyModal() {
                         )}
                       </div>
                     )}
-                    {showEmojiPicker && (
-                      <div className="relative border max-h-46 w-1/2">
+                     {!showEmojiPicker && !mobile  && (
+                      <div className="flex justify-center items-center w-1/2">
+                        {selectedFile && imageType ? (
+                          <img
+                            src={selectedFile}
+                            alt="Selected File"
+                            className="mb-4 max-h-64"
+                          />
+                        ) : selectedFile ? (
+                          <ReactPlayer
+                            url={selectedFile}
+                            playing={true}
+                            controls={false}
+                            loop={true}
+                            width={"90%"}
+                            // height={"30%"}
+                          />
+                        ) : dragging ? (
+                          <div className="text-blue-500 text-white">
+                            Drop the files here...
+                          </div>
+                        ) : (
+                          <div>Drag and drop your files here...</div>
+                        )}
+                      </div>
+                    )}
+                    {showEmojiPicker && !mobile && (
+                      <div className="relative max-h-46 w-1/2">
                         {
                           <Picker
                             data={data}
@@ -218,12 +246,14 @@ export default function MyModal() {
                           cols="30"
                           rows="10"
                         ></textarea>
-                        <div
+                       {!mobile &&  <div
                           style={{}}
                           className="flex justify-between items-center w-full"
                         >
                           <button onClick={handleToggleEmojiPicker}>😀</button>
-                          <p className="text-gray-100">{2200 - postText.length}/2200</p>
+                          <p className="text-gray-100">
+                            {2200 - postText.length}/2200
+                          </p>
 
                           {/* <div className="relative border max-h-46">
                             {showEmojiPicker && (
@@ -245,7 +275,7 @@ export default function MyModal() {
                               />
                             )}
                           </div> */}
-                        </div>
+                        </div>}
                         <input
                           className="bg-gray-800 text-white w-full border-0 outline-none"
                           placeholder="Add location"
