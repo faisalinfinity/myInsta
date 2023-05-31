@@ -168,7 +168,28 @@ export default function MyModal() {
                       ) : (
                         <div>Drag and drop your files here...</div>
                       )}
+                      
                     </div>
+                    <div className="relative border max-h-46">
+                        {showEmojiPicker && (
+                          <Picker
+                            data={data}
+                            onEmojiSelect={handleSelectEmoji}
+                            
+                            emojiTooltip={true}
+                            perLine={7}
+                            title="Pick your emoji"
+                            style={{
+                              position: "absolute",
+                              zIndex: "30",
+                              bottom: "100%",
+                              left: "0",
+                              outerHeight: "100px",
+                              innerHeight:"100px"
+                            }}
+                          />
+                        )}
+                      </div>
                     {next && (
                       <div className="border flex flex-col justify-evenly items-center p-4 ">
                         <User />
@@ -188,7 +209,7 @@ export default function MyModal() {
                         >
                           <button onClick={handleToggleEmojiPicker}>😀</button>
                           <p>{2200 - postText.length}/2200</p>
-                          <div className="relative border max-h-46">
+                          {/* <div className="relative border max-h-46">
                             {showEmojiPicker && (
                               <Picker
                                 data={data}
@@ -207,7 +228,7 @@ export default function MyModal() {
                                 }}
                               />
                             )}
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     )}
