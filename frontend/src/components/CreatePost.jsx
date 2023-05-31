@@ -49,14 +49,16 @@ export default function MyModal() {
   };
 
   const handleSelect = (e) => {
-    e.preventDefault();
+    if (!next) {
+      e?.preventDefault();
 
-    const file = e.target.files[0];
-    file.type.split("/").includes("image")
-      ? setImageType(true)
-      : setImageType(false);
+      const file = e?.target.files[0];
+      file?.type.split("/").includes("image")
+        ? setImageType(true)
+        : setImageType(false);
 
-    setSelectedFile(URL.createObjectURL(file));
+      setSelectedFile(URL?.createObjectURL(file));
+    }
   };
 
   const handleToggleEmojiPicker = () => {
@@ -66,6 +68,7 @@ export default function MyModal() {
   const handleSelectEmoji = (emoji) => {
     setPostText((prevPostText) => prevPostText + emoji.native);
   };
+
   return (
     <>
       <button
@@ -104,13 +107,13 @@ export default function MyModal() {
                 <Dialog.Panel className="relative w-full max-w-2xl max-h-1/2  transform overflow-hidden rounded-2xl bg-gray-800 p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className={`text-lg  leading-6 text-white text-center ${
+                    className={`text-lg  leading-6 text-white text-center  p-2 ${
                       selectedFile && "flex justify-between"
                     }`}
                   >
                     {next && (
                       <h6
-                        className="text-insta-blue"
+                        className="text-insta-blue cursor-pointer"
                         onClick={() => setnext(false)}
                       >
                         Back
@@ -119,10 +122,10 @@ export default function MyModal() {
                     <h2 className="text-center"> Create new post</h2>
                     {selectedFile && (
                       <h6
-                        className="text-insta-blue"
+                        className="text-insta-blue cursor-pointer"
                         onClick={() => setnext(true)}
                       >
-                        Next
+                       {next?"Share":"Next"}
                       </h6>
                     )}
                   </Dialog.Title>
@@ -156,7 +159,7 @@ export default function MyModal() {
                     onSelect={handleSelect}
                   >
                     {!showEmojiPicker && (
-                      <div className="flex justify-center items-center  ">
+                      <div className="flex justify-center items-center w-1/2">
                         {selectedFile && imageType ? (
                           <img
                             src={selectedFile}
@@ -182,7 +185,7 @@ export default function MyModal() {
                       </div>
                     )}
                     {showEmojiPicker && (
-                      <div className="relative border max-h-46">
+                      <div className="relative border max-h-46 w-1/2">
                         {
                           <Picker
                             data={data}
@@ -203,10 +206,10 @@ export default function MyModal() {
                       </div>
                     )}
                     {next && (
-                      <div className="border flex flex-col justify-evenly items-center p-4 gap-5">
-                        <User />
+                      <div className="flex flex-col justify-evenly items-center p-4 gap-5 w-1/2">
+                        <User img={img} />
                         <textarea
-                          className="bg-gray-800 text-white"
+                          className="bg-gray-800 text-white border-0 outline-none"
                           placeholder="Write a caption"
                           value={postText}
                           onChange={(e) => setPostText(e.target.value)}
@@ -220,7 +223,7 @@ export default function MyModal() {
                           className="flex justify-between items-center w-full"
                         >
                           <button onClick={handleToggleEmojiPicker}>😀</button>
-                          <p>{2200 - postText.length}/2200</p>
+                          <p className="text-gray-100">{2200 - postText.length}/2200</p>
 
                           {/* <div className="relative border max-h-46">
                             {showEmojiPicker && (
@@ -244,9 +247,8 @@ export default function MyModal() {
                           </div> */}
                         </div>
                         <input
-                          className="bg-gray-800 text-white w-full"
+                          className="bg-gray-800 text-white w-full border-0 outline-none"
                           placeholder="Add location"
-                          
                           type="text"
                         />
                       </div>
@@ -277,3 +279,5 @@ export default function MyModal() {
     </>
   );
 }
+
+let img = "https://img.freepik.com/free-icon/user_318-159711.jpg";
