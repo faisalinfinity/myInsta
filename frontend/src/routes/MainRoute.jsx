@@ -6,6 +6,7 @@ import Loginpage from '../pages/Loginpage'
 import Signuppage from '../pages/Signuppage'
 import Forgotpage from '../pages/Forgotpage'
 import Search from '../pages/Search'
+import Profile from '../pages/Profile'
 
 export default function MainRoute(){
   return (
@@ -17,6 +18,7 @@ export default function MainRoute(){
                 <Route path='/register' element={<Signuppage/>} ></Route>
                 <Route path='/login/forgot' element={<Forgotpage/>} ></Route>
                 <Route path='/search' element={<Search/>}></Route>
+                <Route path='/profile/*' element={<Profile/>}></Route>
             </Routes>)
   
 }
