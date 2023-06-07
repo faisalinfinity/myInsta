@@ -6,6 +6,6 @@ export const registerAction=(formData)=>{
     .catch((err)=>err)
 }
 
-export const loginAction=()=>{
-     
+export const loginAction=(formData)=>(dispatch)=>{
+     axios.post(`${BASE_URL}/register`,formData)
 }
